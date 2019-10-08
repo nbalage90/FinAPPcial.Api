@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace FinAPPcial.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/transactions")]
     [ApiController]
-    public class TransactionController
+    public class TransactionsController : ControllerBase
     {
         public readonly ITransactionRepository transactions;
 
-        public TransactionController(ITransactionRepository transaction)
+        public TransactionsController(ITransactionRepository transaction)
         {
             this.transactions = transaction;
         }
@@ -24,5 +24,11 @@ namespace FinAPPcial.Api.Controllers
         //{
         //    return Ok(transactions.Transactions);
         //}
+
+        [HttpGet]
+        public async Task<string> get()
+        {
+            return "hahaha";
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace FinAPPcial.Api.Models.Repositories
 {
     public interface ITransactionRepository
     {
-        ICollection<Transaction> Transactions { get; }
+        IQueryable<Transaction> Transactions { get; }
 
         void AddTransaction(Transaction transaction);
     }
