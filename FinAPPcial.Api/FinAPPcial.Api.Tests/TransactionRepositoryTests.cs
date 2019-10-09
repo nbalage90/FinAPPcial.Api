@@ -1,6 +1,7 @@
 using FinAPPcial.Api.Models;
 using FinAPPcial.Api.Models.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,33 +14,23 @@ namespace FinAPPcial.Api.Tests
         public void Transactions_Test()
         {
             // Arrange
-            var repo = new TransactionRepository();
+            var repo = GetRepository();
 
             // Act
-            var result = repo.Transactions;
+            var result = repo.Transactions();
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ICollection<Transaction>));
         }
 
-        [TestMethod]
-        public void AddTreansaction_Test()
+        private ITransactionRepository GetRepository()
         {
-            // Arrange
-            var repo = new TransactionRepository();
-            var transaction = new Transaction
-            {
-                TransactionId = 55,
-                Amount = 3421
-            };
+            var repoMock = new Mock<ITransactionRepository>();
+            repoMock.Setup(t => t.Transactions())
+                    .Returns(new List<Transaction> { new Transaction { TransactionId = 1, Amount = 123 },
+                                                     new Transaction { TransactionId = 2, Amount = 564 } });
 
-            // Act
-            var originalResult = repo.Transactions.Count();
-            repo.AddTransaction(transaction);
-            var newResult = repo.Transactions.Count();
-
-            // Assert
-            Assert.AreNotEqual(originalResult, newResult);
+            return repoMock.Object;
         }
     }
 }

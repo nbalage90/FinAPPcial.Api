@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace FinAPPcial.Api.Models.Repositories
 {
-    public interface ITransactionRepository
+    public interface ICategoryRepository
     {
-        ICollection<Transaction> Transactions();
-
-        void AddTransaction(Transaction transaction);
+        ICollection<Category> Categories();
+        void AddCategory(Category category);
     }
 }

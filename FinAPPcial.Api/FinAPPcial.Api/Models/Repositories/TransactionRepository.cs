@@ -18,7 +18,7 @@ namespace FinAPPcial.Api.Models.Repositories
             };
         }
 
-        public ICollection<Transaction> Transactions =>
+        public ICollection<Transaction> Transactions() =>
             this.transactions;
 
         public void AddTransaction(Transaction transaction)

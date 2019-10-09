@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FinAPPcial.Api.Controllers
 {
-    [Route("api/transactions")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TransactionsController : ControllerBase
     {
@@ -22,10 +22,10 @@ namespace FinAPPcial.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IQueryable<Transaction>>> GetTransactions()
         {
-            return Ok(transactions.Transactions);
+            return Ok(transactions.Transactions());
         }
 
-        [HttpPost("{transaction}")]
+        [HttpPost]
         public async Task<ActionResult> AddTransaction(Transaction transaction)
         {
             transactions.AddTransaction(transaction);
